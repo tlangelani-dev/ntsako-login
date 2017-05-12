@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/process_login.php'; ?>
 <!DOCTYPE html>
 <html>
 <style>
@@ -5,7 +6,8 @@ form {
     border: 3px solid #f1f1f1;
 }
 
-input[type=text], input[type=password] {
+input[type=text],
+input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -53,57 +55,24 @@ span.psw {
     padding-top: 16px;
 }
 
+
 /* Change styles for span and cancel button on extra small screens */
+
 @media screen and (max-width: 300px) {
     span.psw {
-       display: block;
-       float: none;
+        display: block;
+        float: none;
     }
     .cancelbtn {
-       width: 100%;
+        width: 100%;
     }
 }
 </style>
 <body>
 
-<?php
-
-if($_SERVER["REQUEST_METHOD"] == "POST") 
-{
-	$username = $password = $emailErr = "";
-	
-    $username = test_input($_POST["uname"]);
-    // check if e-mail address is well-formed
-    if (!filter_var($username, FILTER_VALIDATE_EMAIL)) 
-	{
-      $emailErr = "Invalid email"; 
-    }
-	else 
-	{
-		 $username = stripslashes($_POST['uname']);
-		 if (preg_match("/^[\w−]+(\.[\w−]+)*@" .
-		 "[\w−]+(\.[\w−]+)*(\.[a-zA-Z]{2, })$/i",
-		 $username) == 0) 
-		 {
-		 ++$errors;
-		 echo "<p>You need to enter a valid " .
-		 "e-mail address.</p>\n";
-		 $username = "";
-		 }
-	}
-  
-  
-  
-
- 
- 
-}
-
-?>
-
 <h2 style="font-size:300%;color:grey;"><em>Games login</em></h2>
 
-<form action="/login.php" method="post">
+<form action="" method="post">
   <div class="imgcontainer">
     <img src="login.jpg" >
   </div>
@@ -111,11 +80,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   <div class="container">
     <label><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
-	
+
 
     <label><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
-        
+
     <button type="submit">Login</button>
     <input type="checkbox" checked="checked"> Remember me
   </div>
